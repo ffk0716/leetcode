@@ -11,5 +11,6 @@ function(add name)
             DEPENDS ${name}.log)
 endfunction()
 
+add(674)
 add(678)
 add(680)
