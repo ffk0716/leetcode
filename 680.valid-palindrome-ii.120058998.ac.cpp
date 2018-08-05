@@ -1,6 +1,3 @@
-#include <iostream>
-
-using namespace std;
 class Solution {
     public:
         bool check(size_t start, size_t end, const string &s) {
@@ -9,9 +6,9 @@ class Solution {
                     return false;
                 start++;
                 end--;
-            }
+            }   
             return true;
-        }
+        }   
 
         bool validPalindrome(const string &s) {
             size_t start = 0;
@@ -21,16 +18,10 @@ class Solution {
                     start++;
                     end--;
                     continue;
-                }
-                return check(start + 1, end, s) || check(start, end - 1, s);
-            }
+                }   
+                return check(start + 1, end, s) || check(start, end - 1, s); 
+            }   
             return true;
-        }
+        }   
 
 };
-
-int main()
-{
-    Solution  s;
-    cout << s.validPalindrome("abxab") << endl;
-}

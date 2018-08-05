@@ -1,9 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cassert>
-#include <vector>
-using namespace std;
-
 class Solution {
     public:
         int findLengthOfLCIS(const vector<int>& nums) {
@@ -11,7 +5,7 @@ class Solution {
                 return nums.size();
             int max_c = 0;
             int c = 0;
-            int pre_n = nums[0];
+            int pre_n = nums[0];                                                                                                           
             for (auto n : nums) {
                 if (n > pre_n)
                     c++;
@@ -24,12 +18,3 @@ class Solution {
             return max_c;
         }
 };
-
-
-int main()
-{
-    Solution  s;
-    assert(s.findLengthOfLCIS({}) == 0);
-    assert(s.findLengthOfLCIS({3}) == 1);
-    assert(s.findLengthOfLCIS({1,3,5,4,7}) == 3);
-}

@@ -1,8 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cassert>
-using namespace std;
-
 class Solution {
     public:
         bool checkValidString(string s) {
@@ -22,12 +17,3 @@ class Solution {
             return as_r == 0;
         }
 };
-
-int main()
-{
-    Solution  s;
-    assert(s.checkValidString("()") == true);
-    assert(s.checkValidString("(*))") == true);
-    assert(s.checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())") == false);
-    assert(s.checkValidString("(())((())()()(*)(*()(())())())()()((()())((()))(*") == false);
-}

@@ -10,9 +10,3 @@ class Solution:
             cur_str += c    
         return max(len(cur_str), max_len)
 
-
-a = Solution()
-print(a.lengthOfLongestSubstring("abccdjefi"))
-print(a.lengthOfLongestSubstring("abcabcbb"))
-print(a.lengthOfLongestSubstring("dvdf"))
-
