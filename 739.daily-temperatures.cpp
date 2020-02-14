@@ -9,41 +9,21 @@ class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& T)
     {
-        map<int, size_t> pending;
-        int pre = -1;
-        for (size_t i = 0; i < T.size(); i++) {
+        auto future_temp = vector<int>(101, -1);
+
+        for (int i = T.size() - 1; i >= 0; i--) {
             auto t = T[i];
 
-            vector<int> found;
-            for (auto p : pending)
-                if (p.first < t)
-                    found.push_back(p.first);
-            for (auto f : found) {
-                size_t i2 = pending[f];
-                while (true) {
-                    auto next_i = T[i2];
-                    T[i2] = i - i2;
-                    if (next_i == -1)
-                        break;
-                    i2 = next_i;
-                }
-                pending.erase(f);
+            int next_warm_i = (int)T.size();
+            for (size_t i2 = t + 1; i2 < future_temp.size(); i2++) {
+                if (future_temp[i2] != -1)
+                    next_warm_i = min(next_warm_i, future_temp[i2]);
             }
-            if (pending.count(t))
-                T[i] = pending[t];
+            if (next_warm_i != (int)T.size())
+                T[i] = next_warm_i - i;
             else
-                T[i] = -1;
-            pending[t] = i;
-        }
-        for (auto p : pending) {
-            auto i2 = p.second;
-            while (true) {
-                auto next_i = T[i2];
-                T[i2] = 0;
-                if (next_i == -1)
-                    break;
-                i2 = next_i;
-            }
+                T[i] = 0;
+            future_temp[t] = i;
         }
         return T;
     }
