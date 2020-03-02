@@ -8,13 +8,22 @@
 # @lc code=start
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        p = sorted(p)
+        pc = collections.Counter(p)
         ans = []
-        for i in range(len(s) - len(p) + 1):
-            ss = s[i:i + len(p)]
-            ss = sorted(ss)
-            if ss == p:
-                ans.append(i)
+        if len(s) <= len(p):
+            return ans
+        sc = collections.Counter(s[:len(p)])
+        if sc == pc:
+            ans.append(0)
+        for i in range(len(p), len(s)):
+            sc[s[i]] += 1
+            old_char = s[i - len(p)]
+            if sc[old_char] == 1:
+                del sc[old_char]
+            else:
+                sc[old_char] -= 1
+            if sc == pc:
+                ans.append(i - len(p) + 1)
         return ans
 
 
